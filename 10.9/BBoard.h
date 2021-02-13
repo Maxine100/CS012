@@ -1,3 +1,6 @@
+#ifndef BBOARD_H
+#define BBOARD_H
+
 class BBoard {
 	private:
 		string title;
@@ -43,3 +46,5 @@ class BBoard {
 		void addMessage();
 		bool userExists(const string&, const string&) const;
 };
+
+#endif

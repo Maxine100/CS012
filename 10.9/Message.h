@@ -1,3 +1,6 @@
+#ifndef MESSAGE_H
+#define MESSAGE_H
+
 class Message {
 	private:
 		string author;
@@ -16,3 +19,5 @@ class Message {
 		// from author: body
 		void display() const;
 };
+
+#endif

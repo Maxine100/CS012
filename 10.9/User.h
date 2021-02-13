@@ -1,3 +1,6 @@
+#ifndef USER_H
+#define USER_H
+
 class User {
 	private:
 		string username;
@@ -24,3 +27,5 @@ class User {
 		// have its password changed. Returns true if password changed, false if not.
 		bool setPassword(const string& oldpass, const string& newpass);
 };
+
+#endif
