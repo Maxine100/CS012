@@ -22,7 +22,7 @@ class User {
 		// this function must still return false if given an empty uname string.
 		bool check(const string& uname, const string& pass) const;
 
-		// Sets a new password. This function should only set hte new password if
+		// Sets a new password. This function should only set the new password if
 		// the current (old) password is passed in. Also, a default User cannot
 		// have its password changed. Returns true if password changed, false if not.
 		bool setPassword(const string& oldpass, const string& newpass);

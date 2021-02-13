@@ -6,7 +6,7 @@ class BBoard {
 		string title;
 		vector<User> userList;
 		User currentUser;
-		vectorMessage> messageList;
+		vector<Message> messageList;
 	
 	public:
 
