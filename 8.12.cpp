@@ -26,13 +26,7 @@ bool isOrdered(const vector<double>& flightPathAngle) {
 
 	if (flightPathAngle.size() > 1) {
 		for (unsigned i = 0; i < flightPathAngle.size() - 1; ++i) {
-			if (flightPathAngle.at(i) < flightPathAngle.at(i + 1)) {
-				size = size + 1;
-			}
-			else if (flightPathAngle.at(i) > flightPathAngle.at(i + 1)) {
-				size = size;
-			}
-			else if (flightPathAngle.size(i) == flightPathAngle.at(i + 1)) {
+			if (flightPathAngle.at(i) <= flightPathAngle.at(i + 1)) {
 				size = size + 1;
 			}
 		}
@@ -44,9 +38,7 @@ bool isOrdered(const vector<double>& flightPathAngle) {
 	if (size == flightPathAngle.size() - 1) {
 		return true;
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 
 void reorder(vector<double>& flightPathAngle, vector<double>& coefficientOfLift) {
