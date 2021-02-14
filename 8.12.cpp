@@ -19,26 +19,24 @@ void readData(const string& filename, vector<double>& flightPathAngle, vector<do
 		flightPathAngle.push_back(x);
 		coefficientOfLift.push_back(y);
 	}
+
+	if (inFS.eof()) {
+		inFS.close();
+	}
 }
 
 bool isOrdered(const vector<double>& flightPathAngle) {
-	unsigned size = 0;
-
-	if (flightPathAngle.size() > 1) {
+	if (flightPathAngle.size() <= 1) {
+		return true;
+	}
+	else {
 		for (unsigned i = 0; i < flightPathAngle.size() - 1; ++i) {
-			if (flightPathAngle.at(i) <= flightPathAngle.at(i + 1)) {
-				size = size + 1;
+			if (flightPathAngle.at(i) > flightPathAngle.at(i + 1)) {
+				return false;
 			}
 		}
-	}
-	else if (flightPathAngle.size() == 0 || flightPathAngle.size() == 1) {
 		return true;
 	}
-
-	if (size == flightPathAngle.size() - 1) {
-		return true;
-	}
-	return false;
 }
 
 void reorder(vector<double>& flightPathAngle, vector<double>& coefficientOfLift) {
@@ -52,7 +50,7 @@ void reorder(vector<double>& flightPathAngle, vector<double>& coefficientOfLift)
 					flightPathAngle.at(j) = flightPathAngle.at(j + 1);
 					flightPathAngle.at(j + 1) = temp;
 
-					temp = coefficientOfLift.at(i);
+					temp = coefficientOfLift.at(j);
 					coefficientOfLift.at(j) = coefficientOfLift.at(j + 1);
 					coefficientOfLift.at(j + 1) = temp;
 				}
@@ -83,8 +81,6 @@ double interpolation(double requestedFlightPathAngle, const vector<double>& flig
 int main() {
 	vector<double> flightPathAngle;
 	vector<double> coefficientOfLift;
-
-	ifstream inFS;
 	string filename;
 
 	cout << "Enter name of input data file:" << endl;
