@@ -5,9 +5,7 @@ using namespace std;
 char* mystrcat(char* destination, const char* source) {
 	int i;
 	int j;
-	for (i = 0; destination[i] != '\0'; ++i) {
-		i = i;
-	}
+	for (i = 0; destination[i] != '\0'; ++i) { }
 	for (j = 0; source[j] != '\0'; ++j) {
 		destination[i + j] = source[j];
 	}
