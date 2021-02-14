@@ -26,5 +26,26 @@ void remove (double array[], int& arraySize, int index) {
 
 int main() {
 	
+	int arraySize = 10;
+	double myArray[10];
+	cout << "Enter 10 values:" << endl;
+	for (int i = 0; i < arraySize; ++i) {
+		cin >> myArray[i];
+	}
+	cout << endl;
+	cout << "Mean: " << mean(myArray, arraySize) << endl << endl;
+
+	cout << "Enter index of value to be removed: ";
+	int index;
+	cin >> index;
+	cout << endl;
+	cout << "Before removing value: ";
+	display(myArray, arraySize);
+	cout << endl;
+	cout << "After removing vlaue: ";
+	remove(myArray, arraySize, index);
+	display(myArray, arraySize);
+	cout << endl;
+
 	return 0;
 }
