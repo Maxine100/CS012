@@ -9,7 +9,7 @@ class IntVector {
 
 	public:
 		IntVector();
-		IntVector(unsigned size, int vlaue = 0);
+		IntVector(unsigned size, int value = 0);
 		~IntVector();
 		unsigned size() const;
 		unsigned capacity() const;

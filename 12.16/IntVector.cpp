@@ -48,7 +48,7 @@ const int& IntVector::at(unsigned index) const {
 
 int& IntVector::at(unsigned index) {
 	if (index >= sz) {
-		throw out_or_range("IntVector::at_range_check");
+		throw out_of_range("IntVector::at_range_check");
 	}
 	else {
 		return data[index];
@@ -65,7 +65,7 @@ void IntVector::insert(unsigned index, int value) {
 		}
 		sz = sz + 1;
 		if (index > sz) {
-			thow out_of_range("IntVector::insert_range_check");
+			throw out_of_range("IntVector::insert_range_check");
 		}
 		else {
 			for (unsigned i = index; i < (sz - 1); ++i) {
@@ -88,7 +88,7 @@ void IntVector::erase(unsigned index) {
 	sz = sz - 1;
 }
 
-const int& IntVector::front() {
+const int& IntVector::front() const {
 	return data[0];
 }
 
@@ -159,7 +159,7 @@ void IntVector::resize(unsigned size, int value) {
 		sz = size;
 	}
 	else if (sz < size) {
-		for (unsigned i = sz; I < size; ++i) {
+		for (unsigned i = sz; i < size; ++i) {
 			data[i] = value;
 		}
 		sz = size;
