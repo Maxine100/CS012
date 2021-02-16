@@ -2,8 +2,40 @@
 
 using namespace std;
 
-bool diophantine(int a, int b, int c, int& x, int& y) {
+int gcd(int& a, int& b) {
+	if (a == b) {
+		return a;
+	}
+	if (a > b) {
+		int c = a - b;
+		return gcd(c, b);
+	}
+	if (b > a) {
+		int d = b - a;
+		return gcd(a, d);
+	}
+	return 0;
+}
 
+bool diophantine(int a, int b, int c, int& x, int& y) {
+	if (c % gcd(a, b) != 0) {
+		return false;
+	}
+	else {
+		if (a % b == 0) {
+			x = 0;
+			y = c / b;
+			return true;
+		}
+		else {
+			int r, u, v;
+			r = a % b;
+			diophantine(b, r, c, u, v);
+			x = v;
+			y = u - (a / b) * x;
+			return true;
+		}
+	}
 }
 
 int main() {
