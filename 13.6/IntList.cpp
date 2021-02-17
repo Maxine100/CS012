@@ -67,7 +67,7 @@ bool IntList::empty() const {
 IntList::IntList(const IntList& cpy) {
 	head = 0;
 	tail = 0;
-	for (intNode* temp = cpy.head; temp != 0; temp = temp->next) {
+	for (IntNode* temp = cpy.head; temp != 0; temp = temp->next) {
 		push_back(temp->data);
 	}
 	return;
@@ -78,7 +78,7 @@ IntList& IntList::operator=(const IntList &rhs) {
 		return *this;
 	}
 	clear();
-	for (intNode* temp = rhs.head;temp != 0; temp = temp->next) {
+	for (IntNode* temp = rhs.head; temp != 0; temp = temp->next) {
 		this->push_back(temp->data);
 	}
 	return *this;
@@ -184,7 +184,7 @@ void IntList::remove_duplicates() {
 	IntNode* curr3;
 
 	for (curr1 = head; curr1 != tail && curr1 != 0; curr1 = curr1->next) {
-		curr3= curr1;
+		curr3 = curr1;
 		for (curr2 = curr1->next; curr2 != 0; curr2 = curr2->next) {
 			if (curr2->data == curr1->data) {
 				if (curr2 == tail) {
