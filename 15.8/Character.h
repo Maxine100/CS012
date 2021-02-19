@@ -8,9 +8,9 @@ const double MAX_HEALTH = 100.0;
 class Character {
 	protected:
 		HeroType type;
-		strig name;
+		string name;
 		double health;
-		disable attackStrength;
+		double attackStrength;
 
 	public:
 		Character(HeroType type, const string& name, double health, double attackStrength);

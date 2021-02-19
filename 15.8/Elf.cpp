@@ -1,6 +1,6 @@
 #include "Elf.h"
 
-Elf::Elf(const string& name, double health, double attackStrength, string family): Character(Elf, name, health, attackStrength) {
+Elf::Elf(const string& name, double health, double attackStrength, string family): Character(ELF, name, health, attackStrength) {
 	this->family = family;
 }
 

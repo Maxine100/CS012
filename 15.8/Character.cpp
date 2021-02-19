@@ -3,7 +3,7 @@
 Character::Character(HeroType type, const string& name, double health, double attackStrength) {
 	this->type = type;
 	this->name = name;
-	this->healh = health = health;
+	this->health = health = health;
 	this->attackStrength = attackStrength;
 }
 
@@ -16,7 +16,7 @@ const string& Character::getName() const {
 }
 
 int Character::getHealth() const {
-	return statics_cast<int>(health);
+	return static_cast<int>(health);
 }
 
 void Character::setHealth(double h) {

@@ -22,7 +22,7 @@ void Warrior::attack(Character &opponent) {
 	else {
 		d = (health / MAX_HEALTH) * attackStrength;
 		opponent.damage(d);
-		cout << "Warrior " << this->getname() << " attacks " << opponent.getName() << " --- SLASH!!" << endl;
+		cout << "Warrior " << this->getName() << " attacks " << opponent.getName() << " --- SLASH!!" << endl;
 		cout << opponent.getName() << " takes " << d << " damage." << endl;
 	}
 }

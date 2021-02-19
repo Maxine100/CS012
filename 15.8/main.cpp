@@ -39,7 +39,7 @@ int main() {
 		adventurers.at(attacker)->attack(*adventurers.at(defender));
 		cout << endl;
 	}
-	cout ,< "-----Health Remaining-----" << endl;
+	cout << "-----Health Remaining-----" << endl;
 	for (unsigned i = 0; i < adventurers.size(); ++i) {
 		cout << adventurers.at(i)->getName() << ": "
 			<< adventurers.at(i)->getHealth() << endl;
