@@ -5,7 +5,6 @@
 
 using namespace std;
 
-#include "Character.h"
 #include "Character.cpp"
 #include "Warrior.cpp"
 #include "Elf.cpp"
