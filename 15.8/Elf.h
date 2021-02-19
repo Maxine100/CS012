@@ -1,8 +1,6 @@
 #ifndef ELF_H
 #define ELF_H
 
-#include "Character.h"
-
 class Elf : public Character {
 	private:
 		string family;
