@@ -1,4 +1,3 @@
-#include "Character.h"
 #include "Wizard.h"
 
 Wizard::Wizard(const string& name, double health, double attackStrength, int rank) : Character(WIZARD, name, health, attackStrength) {
