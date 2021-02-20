@@ -7,7 +7,7 @@ class Warrior : public Character {
 
 	public:
 		Warrior(const string& name, double health, double attackStrength, string allegiance);
-		void attack(Character& defender);
+		void attack(Character& attackee);
 };
 
 #endif

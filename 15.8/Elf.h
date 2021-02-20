@@ -7,7 +7,7 @@ class Elf : public Character {
 	
 	public:
 		Elf(const string& name, double health, double attackStrength, string family);
-		void attack(Character& opponent);
+		void attack(Character& attackee);
 };
 
 #endif

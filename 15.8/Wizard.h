@@ -7,7 +7,7 @@ class Wizard : public Character {
 
 	public:
 		Wizard(const string& name, double health, double attackStrength, int rank);
-		void attack(Character& defender);
+		void attack(Character& attackee);
 };
 
 #endif
