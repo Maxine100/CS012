@@ -8,11 +8,11 @@ Character::Character(HeroType type, const string& name, double health, double at
 }
 
 HeroType Character::getType() const {
-	return type;
+	return this->type;
 }
 
 const string& Character::getName() const {
-	return name;
+	return this->name;
 }
 
 int Character::getHealth() const {
