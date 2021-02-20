@@ -17,9 +17,9 @@ void Wizard::attack(Character& attackee) {
 	// else if attackee isn't wizard
 	else {
 		d = this->attackStrength;
-		attackee.damage(d);
 		cout << "Wizard " << this->name << " attacks " << attackee.getName() << " --- POOF!!" << endl;
 		cout << attackee.getName() << " takes " << d << " damage." << endl;
+		attackee.damage(d);
 	}
 
 	/* if (opponent.getType() == type) {
