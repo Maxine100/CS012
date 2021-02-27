@@ -1,0 +1,322 @@
+Ch.7 C++ Functions/Vectors Review
+- Assigning a normal parameter fails to update the argument's variable because normal parameters are pass by value meaning the argument's values are copied into a local variable for the parameter.
+- A pass by reference parameter does not create a local copy of the argument but rather the parameter refers directly to the argument variable's memory location. Use &.
+- A reference is a variable type that refers to another variable.
+- Function name overloading or function overloading happens when a program has two functions with the same name but differing in the number or types of parameters.
+- An item's scope is the only part of the program that can see the variable.
+- A global variable is a variable declared outside any function.
+- A function declaration specifies the function's return type, name, and parameters. It is known as a function prototype.
+- Vector declaration is like this: vector<dataType> vectorName(numElements);.
+- A vector's elements are automatically initialized to 0s during the vector declaration.
+- vector<int> myVector(3, -1); creates a vector with three elements, each with value -1.
+- vector<int> myVector = {1, 2, 3}; creates a vector of three integer elements initialized with values 1, 2, and 3.
+- Use push_back to append a new element to the end of an existing vector.
+- back() returns the value of the vector's last element. pop_back() removes the last element.
+- The vector copy operation performs an element-by-element copy of a vector.
+- The vector equality operation compares vectors element-by-element.
+- Sometimes vector and string parameters are passed by reference even if they are not modified to prevent the performance and memory overhead of copying the argument that would otherwise occur.
+- const prevents functions from modifying the parameters.
+_________________________________________________________________
+_________________________________________________________________
+Ch.8 Streams
+- ostream (output stream) is a class that supports output (available in #include <iostream> and namespace "std"). It provides the <<, insertion operator for converting different types of data into a sequence of characters.
+- cout is a predefined ostream object.
+- An istream (input stream) is a class that supports input. It provides the >> operator, extraction operator to extract data from a data buffer and write data into different types of variables.
+- cin is a predefined istream pre-associated with a system's standard input.
+- The getline() function reads a line of text, ignoring the ending newline character.
+- The extraction operator >> skips whitespace.
+- cin.ignore() discards the next character in the input buffer.
+- To get input from a file, use #include <fstream>, variable of type ifstream (input file stream, derived from istream), ifstreamvariable.open("filename"/"myfile.txt");, if (!ifstreamvariable.is_open()), ifstreamvariable >> variable.
+- Before C++11, earlier versions of the C++ standard required the inFS.open(str) function's str parameter to be a null-terminated C string, not a C++ string. To use a C++ string as the filename, the c_str() function that comes with C++ strings can be used.
+- eof() function returns true if previous stream operation reached end of file.
+- good() function returns true if previous stream operation had no problems.
+- A program may write output to a file by declaring a variable of type ofstream.
+- A stream error occurs when insertion or extraction fails, causing stream to enter an error state.
+- fail() returns true if either failbit or badbit is set, indicating an error for the previous stream operation.
+- bad() returns true if badbit is set, indicating the stream is bad.
+- cin.clear() clears the error state from cin.
+    - cin.ignore(10, '\n') ignores up to 10 characters in the stream buffer or until a '\n' character is encountered.
+    - To ignore characters in stream until newline, use cin.ignore(numeric_limits<streamsize>::max(), '\n');.
+- A string stream variable of type istringstream can be used like the cin stream and is derived from istream.
+- Use #include <sstream> for access to the string stream class.
+- istringstream inSS(userInfo); declares a new stream variable and initializes its buffer to a copy of userInfo. Then program extracts data from stream inSS using >>.
+    - inSS >> variable; putting values from inSS to variable.
+- The line inSS.str(lineString); uses the str(s) function to initialize the stream's buffer to string s.
+- The line inSS.clear(); resets the state of the stream, resets the stream's state.
+- A string stream variable of type ostringstream can be created that is associated with a string rather than with the screen; it is derived from ostream.
+    - outSS << variable; putting values from variable to outSS.
+- The program uses the str() function to copy that buffer to a string variable.
+- A manipulator is an item designed to be used with the insertion operator << or extraction operator >> to adjust the way output appears. Available via #include <iomanip>, <ios>.
+- Floating point manipulators:
+    - cout << fixed << myFloat; uses fixed-point notation (ios).
+    - cout << scientific << myFloat; uses scientific notation (ios).
+    - cout << setprecision(p) << variable; sets max number of digits in a number (iomanip).
+        - If stream is fixed or scientific, it sets max number of digits in fraction only (after decimal point).
+    - cout << (no)showpoint; shows decimal point and trailing 0s. Opposite is noshowpoint (ios).
+- Aligning manipulators:
+    - cout << setw(n); sets number of characters for next output item only (iomanip).
+    - cout << setfill(c); sets fill to character c (iomanip).
+    - cout << left; changes to left alignment (ios).
+    - cout << right; changes to right alignment (ios).
+- Additional manipulators:
+    - cout << endl; inserts a newline character '\n' into the output buffer and informs the system to flush buffer.
+    - cout << flush; informs system to flush buffer.
+- Command-line arguments are values entered by a user when running a program from a command line.
+- To access arguments, define main() with argc and argv parameters.
+- When a program is run, the system passes an int parameter argc (argument count) to main(), indicating the number of command-line arguments.
+- When a program is run, the system passes a second parameter argv (argument vector) to main(), defined as an array of strings: char* argv[].
+- argc is argument count, # of command-line arguments.
+- argv is argument vector, an array of strings: char* argv[].
+- A usage message lists a program's expected command-line arguments.
+- Returning 1 indicates to the system that an error occurred.
+- Command-line arguments are c strings.
+- atoi() converts a C string to an integer.
+- Putting quotes around an argument allows an argument's string to have any number of spaces.
+_________________________________________________________________
+_________________________________________________________________
+Ch.9 Classes I
+- The struct construct defines a new type, which can be used to declare a variable with subitems.
+    - struct structName {
+        type variable1;
+        type variable2;
+        };
+        structName variable3;
+        variable3.variable1 = x;
+        variable3.variable2 = y;
+- Each struct subitem is called a data member.
+- For a declared variable, each struct data member can be accessed using ".", known as member access operator, sometimes called dot notation.
+- In a program, an object consists of some internal data items plus operations that can be performed on that data.
+- The class construct defines a new type that can group data and functions to form an object.
+- A member function is a function that is part of a class. They are usually listed after public in class definition. A member function call uses the "." operator, known as the member access operator.
+    - objectName.MemberFct();
+- The class user need only use a class' public member functions called the class interface and need not directly access internal variables of the class.
+- A class' member variables are known as data members, declared after private.
+- The class' implementation is defining the details of each member function.
+- The scope resolution operator :: informs the compiler that a function is a member function of the indicated class.
+- const after a member function declaration and definition indicates that the function does not change the value of any data member.
+- Struct comes from C, which can only group data, not functions.
+- Inline member functions are member functions defined inside the class definition.
+- Mutators modify class data members (setter).
+- Accessors access data members but don't modify (getter).
+- Private helper functions help public functions carry out their tasks.
+- Good practice is to initialize all variables when declared.
+- Since C++11, a programmer can initialize data members in the class definition.
+- The constructor is automatically called when a variable of that class type is defined. It can be used to initialize data members.
+- A default constructor can be called without any arguments.
+- A class creator can overload a constructor by defining multiple constructors differing in parameter types.
+- A constructor initializer list is an alternative approach for initializing data members in a constructor, coming after a colon and consisting of a comma-separated list of variableName(initValue) items.
+    - Class:Class() : member(value), member(value) {}.
+- For object.Function(), it's basically Function(object, ...). The object is known as an implicit parameter of the member function.
+- Within a member function, the implicitly-passed object pointer is accessible via the name this.
+    - this->member.
+    - The -> is the member access operator for a pointer, similar to the "." operator for non pointers.
+- A testbench is a special program that tests a specific part of a program.
+- Unit testing is the process of creating and running a program that tests a specific item or unit.
+- Regression testing is running an existing testbench whenever code is changed.
+_________________________________________________________________
+_________________________________________________________________
+Ch.10 Classes II
+- Operator overloading is redefining the functionality of built in operators like +, -, and * on programmer-defined objects.
+- time1 + time2 is the same as time1.operator+(time2);.
+    - TimeHrMn operator+(TimeHrMn rhs);
+    - TimeHrMn TimeHrMn::operator+(TimeHrMn rhs) {};
+- timeTotal.hours = hours + rhs.hours is the same as timeTotal.hours = this->hours + rhs.hours;.
+- Classes can have classes.
+- Each file only includes needed header files (never .cpp).
+- The preprocessor is a tool that scans the file from top to bottom looking for any lines that begin with # (hash symbol).
+- Each line beginning with # directs the preprocessor to modify the file in some way before compilation continues, each line known as a preprocessor directive.
+- The #include directive (include directive), directs the compiler to replace that line by the contents of the given filename.
+    - #include "filename"
+    - #include <filename>
+- Use a .h suffix for any file that will be included in another file.
+- Header files that are part of the standard C++ library don't have a .h extension.
+- Items that were originally part of the C standard library have a "c" prepended.
+- Header file guards are preprocessor directives, which cause the compiler to only include the contents of the header file once.
+    - #ifndef NAME_H
+    - #define NAME_H
+    - #endif
+- h files usually include class definition, including data members and member function declarations.
+- cpp files include member function definitions.
+- A modular compilation approach can be used that separates the compiling and linking steps within the compilation process.
+    - Each source file is independently compiled into an object file.
+- An object file contains machine instructions for the compiled code along with placeholders (references) for calls to functions or accesses to variables or classes defined in other source files or libraries.
+- After each source file is compiled, the linker creates the final executable by linking together the object files and libraries.
+- The #define directive of the form #define MACROIDENTIFIER replacement, instructs the processor to replace any occurrence of MACROIDENTIFIER in the subsequent program code by the replacement text.
+    - #define MACROIDENTIFIER replacement
+- #define is sometimes called a macro.
+- All itmes in the C++ standard library are enclosed in the namespace std.
+- Namespaces are typically used for projects involving code written by multiple programmers.
+- namespace userNamespace {
+      class userClass {
+          ...
+      }
+  }
+_________________________________________________________________
+_________________________________________________________________
+Ch. 11 Arrays
+- An array is an ordered list of items of a given data type.
+- Each item in array is an element.
+- dataType arrayName[numElements];
+- Initialize elements in an array by specifying initial values in braces {} separated by commas.
+    - int myArray[3] = {5, 7, 11}
+- The keyword const can prevent changes to the array.
+    - const int myArray...
+- Vectors are safer to use than arrays.
+- Function definitions use [] to indicate an array parameter.
+- The function call's argument doesn't use [].
+- The compiler automatically passes array arguments by passing a pointer to the array.
+- Functions with array parameters other than C string parameters need a parameter indicating the number of elements in the array.
+- Good practice is to use [] to define array parameters to clearly indicate the parameter is an array and not a pointer to a single variable, instead of defining it as a pointer.
+- A common error is defining a function with an array parameter without a second parameter indicating the number of array elements.
+- Arrays have no member functions.
+- Array size is how much of array we're using.
+- Don't use & when passing in arrays.
+- When accessing arrays out of bounds, there could be segmentation fault, undefined, garbage output.
+- Arrays can be declared with two dimensions.
+- int myArray[R][C] represents a table of int variables with R rows and C columns.
+- A two dimensional array is implemented in a one dimensional memory by placing each row following the previous (row-major order).
+- A two dimensional array's elements can be initialized during declaration using nested braces; int Array[R][C] = { {x11, ... , x1C}, ... , {xR1, ... , xRC} };.
+- Arrays of three or more dimensions can be declared.
+_________________________________________________________________
+_________________________________________________________________
+Ch.12 Pointers & Memory Managment
+- A pointer is a variable that contains a memory address, rather than containing data like most variables.
+- Appending * after a data type in a variable declaration declares a pointer variable.
+- Prepending & to any variable's name gets the variable's address. It returns a pointer to a variable using following form: &variableName.
+- Prepending * to a pointer variable's name in an expression gets the data to which the variable points, an act known as dereferencing a pointer variable. Use the form *variableName.
+- The asterisk symbol indicates that a variable is a pointer type and dereferces a pointer variable.
+- The nullptr keyword is a literal indicating a pointer points to nothing. The pointer is said to be null.
+- The vector insert/erase perfromance problem is when a single call to insert() or erase() in a large vector runs very slowly.
+- << flush forces cout to flush any characters in its buffer to the screen before doing each task.
+- A linked list is a list where each item contains not just data but also a pointer to the next item in the list.
+- The new operator allocates memory for the given type and returns a pointer to that allocated memory; pointerVariable = new type;.
+- The new operator is commonly used with class types.
+- Accessing a class' member functions by first dereferencing a pointer is so common that the language includes a second member access operator, particularly the -> operator that allows an alternative to (*a).b; a->b.
+- The delete operator does the opposite of new operator; delete pointerVariable.
+- Code is the region where the program instructions are stored.
+- Static memory is the region where global variables and static local variables (declared in functions starting with "static") are allocated. These variables don't change.
+- The stack is the region where a function's local variables are allocated during a function call. This memory is automatically allocated and deallocated; it is called automatic memory.
+- The heap is the region where the "new" operator allocates memory and where the "delete" operator deallocates memory. It is also called free store.
+- A program that allocates memory but then loses the ability to access that memory, typically due to failure to properly destroy/free dynamically allocated memory, is said to have a memory leak.
+- Some programming languages use garbage collection where a program's executable includes automatic behavior that at various intervals finds all unreachable allocated memory locations and automatically freeing such unreachable memory.
+- A destructor is a function that is automatically called when an object is destroyed.
+- Destructors are needed when destroying an object should involve more work that simply freeing the object's memory.
+- The syntax for a class' destructor function has a "~" prepended to the function name. There are no parameters or return value.
+- Destroying an object occurs when the object goes out of scope or is deleted.
+- Arrays can store sequences of characters known as strings; char variableName[] = "string".
+- Char arrays were the only kinds of strings in C++'s predecessor language C, and are thus sometimes called C strings to distinguish them from C++'s string type.
+- A string in a char array must end with a special character known as a null character.
+- An array of charcters ending with a null character is a null-terminated string.
+- C++ provides common functions for handling C strings, which can be used by including #include <cstring>.
+- The strlen() function can be used to determine the length of the string argument passed to functions.
+- An array parameter can be defined as a pointer; char* stringName instead of char stringName[].
+- strcpy(str1, str2) copies str2 up to and including null character to str1.
+- strncpy(str1, str2, #) copies up to # characters.
+- strcat(str1, str2) copies str2 up to and including null character to end of str1 starting at str1's null character.
+- strncat(str1, str2, #) copies up to # characters to str1's end, then appends null character.
+- strchr(str1, char1) returns NULL if char1 doesn't exist in str1.
+- size_t strlen(str1) returns # or characters in str1 up to, but not including, first null character.
+- int strcmp(str1, str2) returns 0 if both are equal, 1 if not.
+    - Returns negative # if str1 < str2, positive # if str1 > str2.
+- strchr(str1, char1) returns null pointer if char1 doesn't exist in str1. Else, returns pointer to first occurrence.
+- strrchr(str1, char1) returns null pointer if char1 doesn't exist in str1. Else returns pointer to last occurrence (searches in reverse).
+- strstr(str1, str2) returns char* pointing to first occurrence of str2 within str1. Returns null pointer if not found.
+- An abstract data type (ADT) is a data type whose creation and update are constrained to specific well-defined operations.
+- Information hiding is a key ADT aspect wherein the internal implementation of an ADT's data and operations are hidden from the ADT user.
+- Encapsulation is information hiding.
+- The vector type is an Abstract Data Type (ADT) implemented as a class.
+- at(size_type n) accesses element n.
+- size_type size() const; returns vector's size.
+- bool empty() const; returns true if size is 0.
+- clear() removes all elements; vector size becomes 0.
+- void push_back(const vectorType& x); copies x to new element at vector's end.
+- iterator erase (iteratorPosition); removes element from position. Elements from higher positions are shifted back to fill gap.
+- iterator insert(interatorPosition, const vectorType& x); copies x to element at position. Items at that position and higher are shifted over.
+- the insert() and erase() functions have to use myVector.begin() + int for position.
+- A common use of insert() is to insert a new item in sorted order.
+_________________________________________________________________
+_________________________________________________________________
+Ch.13 Linked List
+- A common use of pointers is to create a list of items such that an item can be efficiently inserted somewhere in the middle of the list without the shifting of later items as required for a vector.
+- A class is defined to represent each list item, known as a list node.
+- A node has data to be stored in each item and a pointer to the next node in the list.
+- A deep copy of an object is a new copy of an object made by a constructor.
+- The copy constructor can be called with a single pass by reference argument of the class type, representing an original object to be copied to the newly-created object.
+- Typically a deep copy is desired for a member that is a pointer.
+- A copy constructor typically has the form:
+    class MyClass {
+        public:
+            ...
+            MyClass(const MyClass& origClass);
+            ...
+    };
+- A class's copy constructor will be called automatically when an object of the class type is passed by value to a function, and also when an object is initialized by copying another object during declaration as in:
+        MyClass classObj2 = classObj1; or obj2Ptr = new MyClass(classObj1);
+- The default behavior of the assignment operator "=" for classes or structs is to perform memberwise assignment.
+- Use the copy assignment operator or sometimes just the assignment operator to copy one class object to another.
+    - MyClass& operator=(const MyClass& objToCopy);
+- The rule of three describes a practice that if a programmer explicitly defines any one of those three special member functions (destructor, copy constructor, copy assignment operator), then the programmer should explicitly define all three. They are sometimes called the big three.
+_________________________________________________________________
+_________________________________________________________________
+Ch.14 Recursion
+- An algorithm is a sequence of steps for solving a problem.
+- A recursive algorithm breaks a problem into smaller subproblems, solving those subproblems, and combining the solutions.
+- A recursive algorithm is an algorithm that is defined by repeated applications of the same algorithm on smaller problems.
+- A base case describes how to actually do something.
+- A recursive function is a function that calls itself.
+- A binary search algorithm begins at the midpoint of the range and halves the range after each guess.
+- To write a recursive function, write the base case then the recursive case.
+- Each function call places a new stack frame on the stack for local parameters, local variables, and more function items.
+- Deep recursion could fill the stack region and cause a stack overflow.
+_________________________________________________________________
+_________________________________________________________________
+Ch.15 Inheritance
+- A class can be derived from another.
+- Derive a class from another by using: class DerivedClass : public OriginalClass {}.
+- Derived class or subclass refers to a class that is derived from another class known as a base class or superclass.
+- Inheritance happens when a derived class inherits the properties of its base class.
+- Programmers commonly draw class inheritance relationships using Unified Modeling Language (UML) notation.
+- A derived class can serve as a base class for another class.
+- A class can serve as a base class for multiple derived classes.
+- A class can be derived from multiple classes.
+    - class DerivedClass : public BaseClass1, public BaseClass2 {}.
+- Member functions of a derived class can't access the private members of the base class.
+- The protected access specifier provides access to derived classes but not anyone else.
+- Keywords in derived class definition:
+    - public: public->public, protected->protected
+    - protected: public->protected, protected->protected
+    - private: public->private, protected->private
+- A derived class can define a member function having the same name as the base class. The member function overrides the function of the base class.
+- The overriding functions can still call the overridden function by prepending the base class name.
+    - BaseClass::FunctionName()
+- Polymorphism refers to determining which program behavior to execute depending on data types.
+- Compile-time polymorphism is when the compiler determines which of several identically-named function to call based on the function's arguments.
+- Runtime polymorphism is when the compiler cannot make the determination but instead the determination is made while the program is running.
+- Derived/base class pointer conversion converts a pointer to a derived class into a pointer to the base class.
+- A virtual function is a member function that may be overridden in a derived class and for which runtime polymorphism is used.
+- A truly virtual function is known as a pure virtual function.
+    - virtual void FunctionName() = 0;
+- A class with at least one pure virtual function is known as an abstract base class meaning objects can't be declared of that type.
+- For large programs, programmers use project management tools to automate the compilation and linking process.
+- make is one project management tool commonly used.
+- make utility uses makefile to recompile and link program whenever changes are made to source or header files.
+- make rules are used to specify dependencies between a target file and a set of prerequisite files needed to generate target file.
+- make recipes are commands in make rules.
+- target : prerequisite1 prerequisite2 ... prerequisiteN
+    command1
+    command2
+    ...
+    commandN
+- An enumeration type declares a name for a new type and possible values for that type.
+- enum identifier {enumerator1, enumerator2, ...};
+- Items within the braces are integer constants automatically assigned an integer value.
+_________________________________________________________________
+_________________________________________________________________
+Ch.16 Intro to Searching/Sorting
+- An algorithm is a sequence of steps for accomplishing a task.
+- Linear search is a search algorithm that starts from the beginning of a list and checks each element until the search key is found or the end of the list is reached.
+- An algorithm's runtime is the time it takes to execute.
+- Big O notation is a mathematical way of describing how a function (running time of an algorithm) generally behaves in relation to the input size.
+- The worst-case runtime of an algorithm is the runtime complexity for an input that results in the longest execution.
+- Sorting is the process of converting a list of elements into ascending or descending elements.
+- Merge sort is a sorting algorithm that divides a list into two halves, recursively sorts each half, then merges the sorted halves to produce a sorted list.
