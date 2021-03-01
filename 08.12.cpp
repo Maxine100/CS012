@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void readData(const string& filename, vector<double>& flightPathAngle, vector<double>& oeeficientOfLift) {
+void readData(const string& filename, vector<double>& flightPathAngle, vector<double>& coefficientOfLift) {
 	double x;
 	double y;
 	ifstream inFS;
@@ -46,7 +46,7 @@ void reorder(vector<double>& flightPathAngle, vector<double>& coefficientOfLift)
 		for (unsigned i = 0; i < flightPathAngle.size(); ++i) {
 			for (unsigned j = 0; j < flightPathAngle.size() - 1; ++j) {
 				if (flightPathAngle.at(j) > flightPathAngle.at(j + 1)) {
-					temp = flightpathAngle.at(j);
+					temp = flightPathAngle.at(j);
 					flightPathAngle.at(j) = flightPathAngle.at(j + 1);
 					flightPathAngle.at(j + 1) = temp;
 
@@ -59,7 +59,7 @@ void reorder(vector<double>& flightPathAngle, vector<double>& coefficientOfLift)
 	}
 }
 
-double interpolation(double requestedFlightPathAngle, const vector<double>& flightPathAngle, const vector<double& coefficientOfLift) {
+double interpolation(double requestedFlightPathAngle, const vector<double>& flightPathAngle, const vector<double>& coefficientOfLift) {
 	unsigned i;
 	int j;
 	double k;
