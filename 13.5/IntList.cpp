@@ -24,7 +24,6 @@ void IntList::push_front(int value) {
 
 	if (this->head == 0 && this->tail == 0) {
 		this->head = new IntNode(value);
-		this->head->next = temp;
 		this->tail = this->head;
 	}
 	else if (head == tail && head != 0) {
@@ -49,7 +48,7 @@ void IntList::pop_front() {
 	else {
 		IntNode* temp = this->head->next;
 		delete this->head;
-		this->head = this->temp;
+		this->head = temp;
 	}
 }
 
