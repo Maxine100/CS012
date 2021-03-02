@@ -13,7 +13,7 @@ IntVector::IntVector(unsigned size, int value) {
 	for (unsigned i = 0; i < sz; ++i) {
 		arr[i] = value;
 	}
-	data = &arr[0];
+	data = arr;
 }
 
 IntVector::~IntVector() {
@@ -32,18 +32,14 @@ bool IntVector::empty() const {
 	if (sz == 0) {
 		return true;
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 
 const int& IntVector::at(unsigned index) const {
 	if (index >= sz) {
 		throw out_of_range("intVector::at_range_check");
 	}
-	else {
-		return data[index];
-	}
+	return data[index];
 }
 
 const int& IntVector::front() const {
@@ -52,7 +48,6 @@ const int& IntVector::front() const {
 
 const int& IntVector::back() const {
 	int arrSize = sz;
-	arrSize = arrSize - 1;
-
+	--arrSize;
 	return data[arrSize];
 }
