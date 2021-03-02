@@ -1,37 +1,35 @@
 #include "User.h"
 
 User::User() {
-	username = "";
-	password = "";
+	this->username = "";
+	this->password = "";
 }
 
 User::User(const string& uname, const string& pass) {
-	username = uname;
-	password = pass;
+	this->username = uname;
+	this->password = pass;
 }
 
 string User::getUsername() const {
-	return username;
+	return this->username;
 }
 
 bool User::check(const string& uname, const string& pass) const {
-	if (uname == username && pass == password) {
-		if (uname != "") {
-			return true;
-		}
-		else {
-			return false;
-		}
+	if (uname == "") {
+		return false;
+	}
+	if (this->username == uname && this->password == pass) {
+		return true;
 	}
 	return false;
 }
 
 bool User::setPassword(const string& oldpass, const string& newpass) {
-	if (username == "") {
+	if (this->username == "") {
 		return false;
 	}
-	if (oldpass == password) {
-		password == newpass;
+	if (oldpass == this->password) {
+		this->password == newpass;
 		return true;
 	}
 	return false;
