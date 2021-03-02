@@ -32,12 +32,12 @@ double Distance::distanceInFeet() const {
 	return this->feet + this->inches / 12.0;
 }
 double Distance::distanceInMeters() const {
-	return distanceInInches() * 0.0254;
+	return this->distanceInInches() * 0.0254;
 }
 const Distance Distance::operator+(const Distance &rhs) const {
 	Distance sum;
 	sum.feet = 0;
-	sum.inches = distanceInInches() + rhs.distanceInInches();
+	sum.inches = this->distanceInInches() + rhs.distanceInInches();
 	sum.init();
 	return sum;
 }
@@ -45,7 +45,7 @@ const Distance Distance::operator+(const Distance &rhs) const {
 const Distance Distance::operator-(const Distance &rhs) const {
 	Distance difference;
 	difference.feet = 0;
-	difference.inches = distanceInInches() - rhs.distanceInInches();
+	difference.inches = this->distanceInInches() - rhs.distanceInInches();
 	difference.init();
 	return difference;
 }
@@ -55,14 +55,14 @@ ostream & operator<<(ostream &out, const Distance &rhs) {
 	return out;
 }
 void Distance::init() {
-	if (feet < 0) {
-		feet = feet * -1;
+	if (this->feet < 0) {
+		this->feet = this->feet * -1;
 	}
 	if (inches < 0) {
-		inches = inches * -1;
+		this->inches = this->inches * -1;
 	}
 	while (inches >= 12.0) {
-		inches = inches - 12.0;
-		feet = feet + 1;
+		this->inches = this->inches - 12.0;
+		this->feet = this->feet + 1;
 	}
 }
