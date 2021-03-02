@@ -157,66 +157,77 @@ class Rational {
 		int denominator;
 	
 	public:
-		Rational() {
-			numerator = 0;
-			denominator = 1;
-		}
-		explicit Rational(int n) {
-			numerator = n;
-			denominator = 1;
-		}
-		Rational(int n, int d) {
+		Rational();
+		explicit Rational(int);
+		Rational(int, int);
+		const Rational add(const Rational&) const;
+		const Rational subtract(const Rational&) const;
+		const Rational multiply(const Rational&) const;
+		const Rational divide(const Rational&) const;
+		void simplify();
+		void display() const;
+
+	private:
+		int gcd(int, int) const;
+};
+
+Rational:: Rational() {
+	numerator = 0;
+	denominator = 1;
+}
+Rational:: Rational(int n) {
+	numerator = n;
+	denominator = 1;
+}
+Rational::Rational(int n, int d) {
 			numerator = n;
 			denominator = d;
 		}
-		const Rational add(const Rational& rational) const {
-			Rational sum;
-			sum.numerator = this->numerator * rational.denominator + this->denominator * rational.numerator;
-			sum.denominator = this->denominator * rational.denominator;
-			return sum;
+const Rational Rational::add(const Rational& rational) const {
+	Rational sum;
+	sum.numerator = this->numerator * rational.denominator + this->denominator * rational.numerator;
+	sum.denominator = this->denominator * rational.denominator;
+	return sum;
+}
+const Rational Rational::subtract(const Rational& rational) const {
+	Rational difference;
+	difference.numerator = this->numerator * rational.denominator - this->denominator * rational.numerator;
+	difference.denominator = this->denominator * rational.denominator;
+	return difference;
+}
+const Rational Rational::multiply(const Rational& rational) const {
+	Rational product;
+	product.numerator = this->numerator * rational.numerator;
+	product.denominator = this->denominator * rational.denominator;
+	return product;
+}
+const Rational Rational::divide(const Rational& rational) const {
+	Rational quotient;
+	quotient.numerator = this->numerator * rational.denominator;
+	quotient.denominator = this->denominator * rational.numerator;
+	return quotient;
+}
+void Rational::simplify() {
+	int a = gcd(this->numerator, this->denominator);
+	this->numerator = this->numerator / a;
+	this->denominator = this->denominator / a;
+}
+void Rational::display() const {
+	cout << this->numerator << " / " << this->denominator;
+}
+int Rational::gcd(int numerator, int denominator) const {
+	int a = numerator;
+	int b = denominator;
+	while (a != b) {
+		if (b > a) {
+			b = b - a;
 		}
-		const Rational subtract(const Rational& rational) const {
-			Rational difference;
-			difference.numerator = this->numerator * rational.denominator - this->denominator * rational.numerator;
-			difference.denominator = this->denominator * rational.denominator;
-			return difference;
+		else {
+			a = a - b;
 		}
-		const Rational multiply(const Rational& rational) const {
-			Rational product;
-			product.numerator = this->numerator * rational.numerator;
-			product.denominator = this->denominator * rational.denominator;
-			return product;
-		}
-		const Rational divide(const Rational& rational) const {
-			Rational quotient;
-			quotient.numerator = this->numerator * rational.denominator;
-			quotient.denominator = this->denominator * rational.numerator;
-			return quotient;
-		}
-		void simplify() {
-			int a = gcd(this->numerator, this->denominator);
-			this->numerator = this->numerator / a;
-			this->denominator = this->denominator / a;
-		}
-		void display() const {
-			cout << this->numerator << " / " << this->denominator;
-		}
-
-	private:
-		int gcd(int numerator, int denominator) const {
-			int a = numerator;
-			int b = denominator;
-			while (a != b) {
-				if (b > a) {
-					b = b - a;
-				}
-				else {
-					a = a - b;
-				}
-			}
-			return a;
-		}
-};
+	}
+	return a;
+}
 
 Rational getRational();
 void displayResult(const string&, const Rational&, const Rational&, const Rational&);
