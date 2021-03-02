@@ -117,8 +117,8 @@ void BBoard::addMessage() {
 	cout << "Enter Body: ";
 	getline(cin, body);
 	cout << endl;
-	auth = currentUser.getUsername();
-	messageList.push_back(Message(auth, subj, body));
+	auth = this->currentUser.getUsername();
+	this->messageList.push_back(Message(auth, subj, body));
 	cout << "Message Recorded!" << endl;
 }
 
