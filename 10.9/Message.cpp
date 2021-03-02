@@ -7,12 +7,12 @@ Message::Message() {
 }
 
 Message::Message(const string& athr, const string& sbjct, const string& body) {
-	author = athr;
-	subject = sbjct;
+	this->author = athr;
+	this->subject = sbjct;
 	this->body = body;
 }
 
 void Message::display() const {
-	cout << subject << endl;
-	cout << "from " << author << ": " << body << endl;
+	cout << this->subject << endl;
+	cout << "from " << this->author << ": " << this->body << endl;
 }
