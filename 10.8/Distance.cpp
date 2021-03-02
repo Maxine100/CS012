@@ -5,84 +5,62 @@ using namespace std;
 
 #include "Distance.h"
 
-// Constructs a default Distance of 0 ft and 0.0 in
 Distance::Distance() {
 	this->feet = 0;
 	this->inches = 0.0;
 }
-
-// Constructs a distance of ft feet and in inches, unless in >= 12, in which case the values of feet and inches are adusted accordingly.
-// A Distance will always be positive.
 Distance::Distance(unsigned ft, double in) {
-	feet = ft;
-	inches = in;
+	this->feet = ft;
+	this->inches = in;
 	init();
 }
-
-// Constructs a distance of 0 ft and in inches, unless in >= 12, in which case the values of feet and inches are adjusted accordingly.
-// A Distance will always be positive.
 Distance::Distance(double in) {
-	feet = 0;
-	inches = in;
+	this->feet = 0;
+	this->inches = in;
 	init();
 }
-
-// Returns just the feet portion of the Distance.
 unsigned Distance::getFeet() const {
-	return feet;
+	return this->feet;
 }
-
-// Returns just the inches portion of the Distance.
 double Distance::getInches() const {
-	return inches;
+	return this->inches;
 }
-
-// Returns the entire distance as the equivalent amount of inches.
-// 4 feet 3.5 inches would be returned as 51.5 inches.
 double Distance::distanceInInches() const {
-	return feet * 12.0 + inches;
+	return this->feet * 12.0 + this->inches;
 }
-
-// Returns the entire distance as the equivalent amount of feet.
-// 3 feet 6 inches would be returned as 3.5 feet;
 double Distance::distanceInFeet() const {
-	return feet + inches / 12.0;
+	return this->feet + this->inches / 12.0;
 }
-
-// Returns the entire distance as the equivalent amount of meters.
-// 1 inch equals 0.0254 meters.
-// 2 feet 8.12 inches would be returned as 0.815848 meters.
 double Distance::distanceInMeters() const {
-	return (feet * 12.0 + inches) * 0.0254;
+	return distanceInInches() * 0.0254;
 }
-
-// Returns the sum of 2 Distances.
 const Distance Distance::operator+(const Distance &rhs) const {
-	double i = distanceInInches();
-	double sum = i + rhs.distanceInInches();
-	return(Distance(sum));
+	Distance sum;
+	sum.feet = 0;
+	sum.inches = distanceInInches() + rhs.distanceInInches();
+	sum.init();
+	return sum;
 }
 
-// Returns the difference between 2 Distances.
 const Distance Distance::operator-(const Distance &rhs) const {
-	double i = distanceInInches();
-	double difference = i - rhs.distanceInInches();
-	return(Distance(difference));
+	Distance difference;
+	difference.feet = 0;
+	difference.inches = distanceInInches() - rhs.distanceInInches();
+	difference.init();
+	return difference;
 }
 
-// Outputs to the stream out the Distance in the format:
-// feet' inches''
 ostream & operator<<(ostream &out, const Distance &rhs) {
-	out << rhs.feet << "; " << rhs.inches << "\"";
+	out << rhs.feet << "' " << rhs.inches << "\"";
 	return out;
 }
-
-// Used by the 2 parameterized constructors to convert any negative values to positive and inches >= 12 to the appropriate number of feet and inches.
 void Distance::init() {
+	if (feet < 0) {
+		feet = feet * -1;
+	}
 	if (inches < 0) {
 		inches = inches * -1;
 	}
-	// If inches is greater than or equal to 12, convert to feet and inches.
 	while (inches >= 12.0) {
 		inches = inches - 12.0;
 		feet = feet + 1;
