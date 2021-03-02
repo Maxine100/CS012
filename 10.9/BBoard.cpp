@@ -3,39 +3,39 @@
 #include "BBoard.h"
 
 BBoard::BBoard() {
-	title = "";
-	userList.resize(0);
-	messageList.resize(0);
+	this->title = "";
+	this->userList.resize(0);
+	this->currentUser = User();
+	this->messageList.resize(0);
 }
 
 BBoard::BBoard(const string& boardTitle) {
-	title = boardTitle;
-	userList.resize(0);
-	messageList.resize(0);
+	this->title = boardTitle;
+	this->userList.resize(0);
+	this->currentUser = User();
+	this->messageList.resize(0);
 }
 
 bool BBoard::loadUsers(const string& filename) {
-	string fileInput;
-	string password2;
-	ifstream inFS;
-	inFS.open(filename.c_str());
-	if (!inFS.is_open()) {
+	ifstream file;
+	string username;
+	string password;
+	file.open(filename.c_str());
+	if (!file.is_open()) {
 		return false;
 	}
-	
-	while (inFS >> fileInput) {
-		if (fileInput != "end") {
-			inFS >> password2;
-			userList.push_back(User(fileInput, password2));
-		}
+	while (file >> username >> password) {
+		userList.push_back(User(username, password));
 	}
-	inFS.close();
+	if (file.eof()) {
+		file.close();
+	}
 	return true;
 }
 
 bool BBoard::login() {
-	string username;
-	string password;
+	string username = "";
+	string password = "";
 	cout << "Welcome to " << title << endl;
 	cout << "Enter your username ('Q' or 'q' to quit): ";
 	cin >> username;
@@ -51,8 +51,13 @@ bool BBoard::login() {
 			cout << endl;
 		}
 		else {
-			currentUser = User(username, password);
-			cout << "Welcome back " << currentUser.getUsername() << "!" << endl;
+			cout << "Welcome back " << currentUser.getUsername() << "!" << endl<< endl;
+			for (unsigned i = 0; i < this->userList.size(); ++i) {
+				if (this->userList.at(i).getUsername() == username) {
+					this->currentUser = this->userList.at(i);
+					break;
+				}
+			}
 			return true;
 		}
 	}
@@ -90,15 +95,15 @@ void BBoard::run() {
 
 void BBoard::display() const {
 	string dashes = "---------------------------------------------------------";
-	if (messageList.empty()) {
+	if (this->messageList.empty()) {
 		cout << "Nothing to Display." << endl;
 		return;
 	}
 	else {
-		for (unsigned i = 0; i < messageList.size(); ++i) {
+		for (unsigned i = 0; i < this->messageList.size(); ++i) {
 			cout << dashes << endl;
 			cout << "Message #" << i + 1 << ": ";
-			messageList.at(i).display();
+			this->messageList.at(i).display();
 		}
 		cout << dashes << endl;
 	}
@@ -113,14 +118,13 @@ void BBoard::addMessage() {
 	getline(cin, body);
 	cout << endl;
 	auth = currentUser.getUsername();
-
 	messageList.push_back(Message(auth, subj, body));
-	cout << "message Recorded!" << endl;
+	cout << "Message Recorded!" << endl;
 }
 
 bool BBoard::userExists(const string& username, const string& password) const {
-	for (unsigned int i = 0; i < userList.size(); ++i) {
-		if (userList.at(i).check(username, password)) {
+	for (unsigned int i = 0; i < this->userList.size(); ++i) {
+		if (this->userList.at(i).check(username, password)) {
 			return true;
 		}
 	}
