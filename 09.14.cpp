@@ -172,16 +172,16 @@ class Rational {
 };
 
 Rational:: Rational() {
-	numerator = 0;
-	denominator = 1;
+	this->numerator = 0;
+	this->denominator = 1;
 }
 Rational:: Rational(int n) {
-	numerator = n;
-	denominator = 1;
+	this->numerator = n;
+	this->denominator = 1;
 }
 Rational::Rational(int n, int d) {
-			numerator = n;
-			denominator = d;
+	this->numerator = n;
+	this->denominator = d;
 		}
 const Rational Rational::add(const Rational& rational) const {
 	Rational sum;
