@@ -75,7 +75,7 @@ int main() {
 	{
 		cout << "\nlist3 constructor called";
 		IntList list3;
-		cout << "\npushfron 10";
+		cout << "\npushfront 10";
 		list3.push_front( 10 );
 		cout << "\npushfront 20";
 		list3.push_front( 20 );
@@ -161,7 +161,7 @@ int main() {
 		list4.display();
 		cout << "\ninsert 51";
 		list4.insert_ordered( 51 );
-		cout << "nlist4: ";
+		cout << "\nlist4: ";
 		list4.display();
 		cout << endl;
 	}
@@ -173,15 +173,14 @@ int main() {
 	if (test == 5) {
 		cout << "\nlist5 constructor called";
 		IntList list5;
-		cout << "\npushfron 10";
+		cout << "\npushfront 10";
 		list5.push_front( 10 );
-		cout << "\npushfron 20";
+		cout << "\npushfront 20";
 		list5.push_front( 20 );
 		cout << "\npushfront 10";
 		list5.push_front( 10 );
 		cout << "\npushfront 30";
 		list5.push_front( 30 );
-		cout << "\nlist5: ";
 		cout << "\nlist5: ";
 		list5.display();
 		cout << "\nremove_duplicates()";
