@@ -1,18 +1,20 @@
 #include "IntList.h"
 
 IntList::IntList() {
-	head = 0;
-	tail = 0;
+	this->head = 0;
+	this->tail = 0;
 }
 
 IntList::~IntList() {
-
+	while (!empty()) {
+		pop_front();
+	}
 }
 
 void IntList::display() const {
-	IntNode* curr = head;
-	for (curr = head; curr != 0; curr = curr->next) {
-		if (curr != tail) {
+	IntNode* curr = this->head;
+	for (curr = this->head; curr != 0; curr = curr->next) {
+		if (curr != this->tail) {
 			cout << curr->data << " ";
 		}
 		else {
@@ -24,49 +26,47 @@ void IntList::display() const {
 void IntList::push_front(int value) {
 	IntNode* temp = this->head;
 
-	if (head == 0 && tail == 0) {
-		head = new IntNode(value);
-		(*head).next = temp;
-		tail = head;
+	if (this->head == 0 && this->tail == 0) {
+		this->head = new IntNode(value);
+		this->head->next = temp;
+		this->tail = this->head;
 	}
-	else if (head == tail && head != 0) {
-		head = new IntNode(value);
-		(*head).next = temp;
+	else if (this->head == this->tail && this->head != 0) {
+		this->head = new IntNode(value);
+		this->head->next = temp;
 	}
 	else {
-		head = new IntNode(value);
-		(*head).next = temp;
+		this->head = new IntNode(value);
+		this->head->next = temp;
 	}
 }
 
 void IntList::pop_front() {
-	if (head == tail && head != 0) {
-		delete head;
-		head = 0;
-		tail = 0;
+	if (this->head == this->tail && this->head != 0) {
+		delete this->head;
+		this->head = 0;
+		this->tail = 0;
 	}
-	else if (head == 0 && tail == 0) {
+	else if (this->head == 0 && this->tail == 0) {
 
 	}
 	else {
-		IntNode* temp = (*head).next;
-		delete head;
-		head = temp;
+		IntNode* temp = this->head->next;
+		delete this->head;
+		this->head = temp;
 	}
 }
 
 bool IntList::empty() const {
-	if (head == 0 && tail == 0) {
+	if (this->head == 0 && this->tail == 0) {
 		return true;
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 
 IntList::IntList(const IntList& cpy) {
-	head = 0;
-	tail = 0;
+	this->head = 0;
+	this->tail = 0;
 	for (IntNode* temp = cpy.head; temp != 0; temp = temp->next) {
 		push_back(temp->data);
 	}
@@ -85,19 +85,19 @@ IntList& IntList::operator=(const IntList &rhs) {
 }
 
 void IntList::push_back(int value) {
-	if (head == 0 && tail == 0) {
-		head = new IntNode(value);
-		(*head).next = 0;
-		tail = head;
+	if (this->head == 0 && this->tail == 0) {
+		this->head = new IntNode(value);
+		this->head->next = 0;
+		this->tail = this->head;
 	}
-	else if (head == tail && head != 0) {
-		tail = new IntNode(value);
-		(*head).next = tail;
+	else if (this->head == this->tail && this->head != 0) {
+		this->tail = new IntNode(value);
+		this->head->next = this->tail;
 	}
 	else {
 		IntNode* temp = new IntNode(value);
-		(*tail).next = temp;
-		tail = temp;
+		this->tail->next = temp;
+		this->tail = temp;
 	}
 }
 
@@ -105,24 +105,24 @@ void IntList::clear() {
 	while (!empty()) {
 		pop_front();
 	}
-	head = 0;
-	tail = 0;
+	this->head = 0;
+	this->tail = 0;
 }
 
 void IntList::selection_sort() {
-	IntNode* curr = head;
+	IntNode* curr = this->head;
 	IntNode* curr2 = 0;
 	int min;
 	IntNode* index;
 
-	if (head == tail && head == 0) {
+	if (this->head == this->tail && this->head == 0) {
 
 	}
-	else if (head == tail && head != 0) {
+	else if (this->head == this->tail && this->head != 0) {
 
 	}
 	else {
-		for (curr = head; curr != tail; curr = curr->next) {
+		for (curr = this->head; curr != this->tail; curr = curr->next) {
 			min = curr->data;
 			index = curr;
 			for (curr2 = curr->next; curr2 != 0; curr2 = curr2->next) {
@@ -138,30 +138,30 @@ void IntList::selection_sort() {
 }
 
 void IntList::insert_ordered(int value) {
-	if (head == 0) {
-		head = new IntNode(value);
-		tail = head;
+	if (this->head == 0) {
+		this->head = new IntNode(value);
+		this->tail = this->head;
 	}
-	else if (head == tail) {
+	else if (this->head == this->tail) {
 		IntNode* temp = new IntNode(value);
-		if (temp->data > head->data) {
-			head->next = temp;
-			tail = temp;
+		if (temp->data > this->head->data) {
+			this->head->next = temp;
+			this->tail = temp;
 		}
 		else {
-			head = temp;
-			head->next = tail;
+			this->head = temp;
+			this->head->next = this->tail;
 		}
 		return;
 	}
 	else {
 		IntNode* newValue = new IntNode(value);
-		if (newValue->data < head->data) {
+		if (newValue->data < this->head->data) {
 			push_front(value);
 			delete newValue;
 			return;
 		}
-		for (IntNode *curr = head; curr != tail; curr = curr->next) {
+		for (IntNode *curr = this->head; curr != this->tail; curr = curr->next) {
 			if (newValue->data <= curr->next->data) {
 				IntNode* temp = curr->next;
 				curr->next = newValue;
@@ -169,34 +169,34 @@ void IntList::insert_ordered(int value) {
 				return;
 			}
 		}
-		tail->next = newValue;
-		tail = newValue;
+		this->tail->next = newValue;
+		this->tail = newValue;
 	}
 }
 
 void IntList::remove_duplicates() {
-	if (head == 0) {
+	if (this->head == 0) {
 		return;
 	}
 
-	IntNode* curr1 = head;
+	IntNode* curr1 = this->head;
 	IntNode* curr2 = curr1->next;
 	IntNode* curr3;
 
-	for (curr1 = head; curr1 != tail && curr1 != 0; curr1 = curr1->next) {
+	for (curr1 = this->head; curr1 != this->tail && curr1 != 0; curr1 = curr1->next) {
 		curr3 = curr1;
 		for (curr2 = curr1->next; curr2 != 0; curr2 = curr2->next) {
 			if (curr2->data == curr1->data) {
-				if (curr2 == tail) {
-					if (curr2 == head->next) {
-						head->next = 0;
-						delete tail;
-						tail = head;
-						curr2 = head;
+				if (curr2 == this->tail) {
+					if (curr2 == this->head->next) {
+						this->head->next = 0;
+						delete this->tail;
+						tail = this->head;
+						curr2 = this->head;
 					}
 					else {
-						tail = curr3;
-						tail->next = 0;
+						this->tail = curr3;
+						this->tail->next = 0;
 						delete curr2;
 					}
 				}
