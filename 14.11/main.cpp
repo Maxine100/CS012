@@ -35,10 +35,10 @@ int main() {
 
 		test2.push_front(-4);
 
-		cout << "Size 1 (doesn't exist): " << test2.exists(01) << endl;
+		cout << "Size 1 (doesn't exist): " << test2.exists(-1) << endl;
 		cout << "Size 1 (does exist): " << test2.exists(-4) << endl;
 
-		test2.push_front(05);
+		test2.push_front(-5);
 		test2.push_front(4);
 		test2.push_front(0);
 		test2.push_front(6);
