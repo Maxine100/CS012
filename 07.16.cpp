@@ -36,7 +36,7 @@ bool throwDart(int s) {
 
 	// Call the inInside function and return its output.
 	// You do not have to cast x & y to doubles, it is done automatically.
-	if (isInside(x, y, static_cast<double>(x) / 2)) {
+	if (isInside(x, y, static_cast<double>(s) / 2)) {
 		return true;
 	}
 	return false;
