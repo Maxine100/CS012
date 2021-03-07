@@ -141,7 +141,7 @@ int main() {
 		list4.display();
 		cout << "\ninsert 11";
 		list4.insert_ordered ( 11 );
-		cout << "nlist4: ";
+		cout << "\nlist4: ";
 		list4.display();
 		cout << "\ninsert 10";
 		list4.insert_ordered( 10 );
