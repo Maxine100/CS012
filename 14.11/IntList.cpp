@@ -1,19 +1,19 @@
 #include "IntList.h"
 
 IntList::IntList() {
-	head = 0;
+	this->head = 0;
 }
 
 void IntList::push_front(int value) {
 	IntNode* temp = this->head;
 
-	if (head == 0) {
-		head = new IntNode(value);
-		(*head).next = temp;
+	if (this->head == 0) {
+		this->head = new IntNode(value);
+		this->head->next = temp;
 	}
 	else {
 		head = new IntNode(value);
-		(*head).next = temp;
+		this->head->next = temp;
 	}
 }
 
@@ -27,7 +27,7 @@ ostream& operator<<(ostream& out, const IntList& list) {
 }
 
 bool IntList::exists(int value) const {
-	if (exists(head, value)) {
+	if (exists(this->head, value)) {
 		return true;
 	}
 	else {
